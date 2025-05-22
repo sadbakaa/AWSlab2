@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    env_file: .env
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - app-net
+
+  service1:
+    build: ./service1
+    container_name: service1
+    env_file: .env
+    ports:
+      - "3000:3000"
+    networks:
+      - app-net
+
+  service2a:
+    build: ./service2
+    container_name: service2a
+    env_file: .env
+    ports:
+      - "3001:3000"
+    networks:
+      - app-net
+
+  service2b:
+    build: ./service2
+    container_name: service2b
+    env_file: .env
+    ports:
+      - "3002:3000"
+    networks:
+      - app-net
+
+volumes:
+  rabbitmq_data:
+
+networks:
+  app-net:
+    driver: bridge

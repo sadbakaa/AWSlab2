@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head><meta charset="UTF-8"><title>Send Message</title>
+  <style>body{font-family:sans-serif;padding:1rem}form{display:flex;gap:.5rem}input[type=text]{flex:1;padding:.5rem}button{padding:.5rem 1rem}</style>
+</head>
+<body>
+  <h1>Надіслати повідомлення</h1>
+  <form action="/send" method="post">
+    <input type="text" name="message" placeholder="Текст" required />
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>
